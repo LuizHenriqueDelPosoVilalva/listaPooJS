@@ -1,46 +1,48 @@
 class ItemBiblioteca {
-    set obterInformacao(detalhes) {
-         this.detalhes =  detalhes
+    constructor() {
+        if(this.constructor === ItemBiblioteca) {
+            throw new Error("Essa classe não pode ser instanciada")
+        }
     }
 
     get obterInformacao() {
-        return this.detalhes
+        throw new Error(`Esse metodo deve ser implementado`)
     }
 }
 
 class Livro extends ItemBiblioteca {
-    
     constructor(autor, titulo) {
         super(autor, autor)
         this.autor = autor
         this.titulo = titulo
     }
+
+    get obterInformacao(){
+        return `Autor do livro: ${this.autor}, titulo do livro: ${this.titulo}`
+    }
 }
 
 class DVD extends ItemBiblioteca {
-
     constructor(capacidade, camadas, nome) {
         super(capacidade, camadas, nome)
         this.capacidade = capacidade
         this.camadas = camadas 
         this.nome = nome
     }
+
+    get obterInformacao() {
+        return `Detalhes do DVD, nome: ${this.nome}, capacidade: ${this.capacidade}, camadas: ${this.camadas} `
+    }
 }
 
-const itemBiblioteca = new ItemBiblioteca()
 const livro1 = new Livro ('J.R.R.Tolkien', 'Senhor dos Aneis')
-itemBiblioteca.obterInformacao = livro1
-console.log(itemBiblioteca.obterInformacao)
+console.log(livro1.obterInformacao)
 
 const livro2 = new Livro ('Zé', 'Primavera Silenciosa')
-itemBiblioteca.obterInformacao = livro2
-console.log(itemBiblioteca.obterInformacao)
+console.log(livro2.obterInformacao)
 
 const dvd1 = new DVD('1,120 MB', 10, 'O Hobbit')
-itemBiblioteca.obterInformacao = dvd1
-console.log(itemBiblioteca.obterInformacao)
+console.log(dvd1.obterInformacao)
 
 const dvd2 = new DVD('0.724 MB', 2, 'A coisa')
-itemBiblioteca.obterInformacao = dvd2
-console.log(itemBiblioteca.obterInformacao)
-
+console.log(dvd2.obterInformacao)
